@@ -6,6 +6,7 @@ Welcome to the Tunes of Randomness! This is a simple music player application bu
 
 ## How to Set Up the Project
 
-1. Clone this repository to get the source code:
-   ```bash
-   git clone https://github.com/TinySpaceGremlin23/Tunes-of-Randomness.git
+### 1. Clone the Repository
+To get the source code, clone this repository:
+```bash
+git clone https://github.com/TinySpaceGremlin23/Tunes-of-Randomness.git
