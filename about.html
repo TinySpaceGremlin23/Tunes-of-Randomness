@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="about.css">
+    <title>Music Portal</title>
+</head>
+<body>
+
+    <!-- Watermark / Instagram link -->
+<a href="https://www.instagram.com/tinyspacegremlin" target="_blank" class="watermark">
+    <div>
+        <p>tinyspacegremlin</p>
+    </div>
+</a>
+
+    <h1>Short Version: This is a music player.<br>
+        It's a player that plays music.</h1>
+    <h2>Long Version: I made a random music player that includes<br>
+    all the videos I have saved in a playlist on my YouTube channel. I<br>
+downloaded the videos, converted them in mp3 files, and then<br>
+shoved them in a JSON file for the player to pull from. These are<br>
+videos I've saved over the years (my playlist currently says 3,670),<br>
+and even though some might have gotten lost in process,<br>
+I still wanted to share my music with everyone! If there's<br>
+a song you want to hear, and if it isn't already in the list, the<br>
+watermark in the lower right corner will take you straight to<br>
+my Instagram, where you can DM me your request.</h2>
+
+<!-- Top navigation bar -->
+<div class="topnav" id="topnav">
+    <button class="toggle-btn" id="toggleBtn" onclick="toggleNav()">≡</button>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy_policy.html">Privacy Policy</a></li>
+    </ul>
+</div>
+</div>
+
+<script>
+    // Toggle the navbar visibility 
+function toggleNav() {
+    var topnav = document.getElementById("topnav");
+    topnav.classList.toggle("show-nav");
+}
+</script>
+
+</body>
+</html>

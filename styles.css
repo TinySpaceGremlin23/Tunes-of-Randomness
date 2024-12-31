@@ -1,0 +1,323 @@
+/* Custom Fonts */
+@font-face {
+    font-family: 'Old London';
+    src: url(fonts/OldLondon.ttf) format('truetype');
+}
+
+/* CSS Variables for Color Themes */
+:root {
+    --bg-color-start: #F3FEB8; /* Background gradient start (light yellowish) */
+    --bg-color-end: #FFDE4D;   /* Background gradient end (lemon yellow) */
+    --dropdown-bg: #FFB22C;     /* Dropdown background (bright orange) */
+    --dropdown-border: #5d4037;  /* Dropdown border (dark brown) - unchanged */
+    --intro-text-color: #FF4C4C; /* Introduction text color (red) */
+    --song-title-color: #FF4C4C; /* Song title color (red) */
+    --progress-bar-bg: #F3FEB8;  /* Progress bar background (light yellowish) */
+    --thumb-color: #FFDE4D;       /* Slider thumb color (lemon yellow) */
+    --button-bg: #F3FEB8;         /* Button background (light yellowish) */
+    --button-text-color: #FF4C4C; /* Button text color (red) */
+    --search-border-color: #5d4037; /* Search bar border color (dark brown) - unchanged */
+    --search-button-bg: #FFB22C;   /* Search button background color (bright orange) */
+    --search-button-text-color: white; /* Search button text color - unchanged */
+}
+
+
+/* Background */
+body {
+    height: 100vh;
+    margin: 0;
+    background-image: linear-gradient(180deg, var(--bg-color-start), var(--bg-color-end), white);
+    background-size: cover; /* Ensures it covers the viewport */
+    background-attachment: fixed; /* Prevents scrolling */
+    background-repeat: no-repeat; /* Prevents any repetition */
+}
+
+
+/* Container for dropdown - positioned in the upper right corner */
+.dropdown-container {
+    position: fixed;
+    bottom: 20px;
+    left: 75px;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Style the dropdown */
+select {
+    padding: 5px;
+    font-size: 18px; /* Increased font size for better visibility */
+    border: 2.5px solid var(--dropdown-border);
+    border-radius: 70px;
+    background-color: var(--dropdown-bg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Change the background of the dropdown when it's focused */
+select:focus {
+    outline: none;
+    background-color: #eee;
+    border-color: var(--dropdown-border);
+}
+
+.introText {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0;
+    color: var(--intro-text-color); /* Change text color */
+}
+
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; /* Adjust to your desired width */
+    height: 100%;
+    padding: 22px;
+    box-shadow: 0 5px 2px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    background-image: linear-gradient(180deg, var(--bg-color-start), var(--bg-color-end), white);
+    transition: width 0.6s ease; /* Add transition effect */
+}
+
+.topnav.show-nav {
+    width: 200px; /* Adjust to your desired expanded width */
+}
+
+.topnav .toggle-btn {
+    font-size: 25px;
+    border-block-start-color: black;
+    border-block-end-color: black;
+    background: none;
+    cursor: pointer;
+}
+
+.topnav nav {
+    margin-top: 10px;
+}
+
+.topnav ul {
+    list-style-type: none;
+    margin-left: 0; /* Adjust margin-left to remove indentation */
+    padding: 0;
+    display: none; /* Initially hide the navigation links */
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.topnav.show-nav ul {
+    display: block;
+}
+
+.topnav ul li {
+    margin-bottom: 10px;
+}
+
+.topnav ul li a {
+    display: block;
+    text-decoration: none;
+    color: #5d4037; /* Default color for links */
+    transition: color 0.3s; /* Smooth transition for color changes */
+}
+
+.topnav ul li a:hover {
+    color: #FFB22C; /* Hover color (bright orange) */
+}
+
+
+/* Player Container */
+.player-container {
+    margin: 50px auto;
+    padding: 30px;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    text-align: center;
+    height: 540px;
+    max-width: 300px;
+    width: 80%;
+}
+
+#song-length {
+    font-size: 25px;
+}
+
+/* Album Cover */
+img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+/* Scrolling Title */
+.scrolling-title {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px auto;
+    height: 60px; /* Adjust as needed */
+    position: relative;
+}
+
+.scrolling-title p {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-text 10s linear infinite;
+    font-size: 24px;
+    color: var(--song-title-color); /* Use variable for scrolling title color */
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.progress-bar input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background: var(--progress-bar-bg); /* Use variable for progress bar background */
+    outline: none;
+}
+
+.progress-bar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+.progress-bar input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+/* Search Bar */
+.search-bar {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 2px solid var(--search-border-color); /* Use variable for border color */
+}
+
+.search-bar button {
+    padding: 8px 16px;
+    font-size: 18px;
+    background-color: var(--search-button-bg); /* Use variable for button background */
+    color: var(--search-button-text-color); /* Use variable for button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Controls */
+#controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#controls button {
+    background: var(--button-bg); /* Use variable for button background */
+    border: none;
+    font-size: 20px;
+    color: var(--button-text-color); /* Use variable for button text color */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 8px;
+}
+
+#controls button:hover {
+    background: var(--button-text-color);
+    transform: scale(1.1);
+    transition: background 0.3s, transform 0.3s;
+}
+
+/* Volume Slider */
+.volume-control {
+    margin-top: 20px;
+}
+
+#volume-slider {
+    width: 50%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    margin-top: 10px;
+    background: var(--progress-bar-bg); /* Use variable for volume slider background */
+    border-radius: 5px;
+    outline: none;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+.player-container,
+.progress-bar input[type="range"],
+#controls button,
+#volume-slider::-webkit-slider-thumb,
+.progress-bar input[type="range"]::-webkit-slider-thumb,
+#volume-slider {
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+}
+
+.watermark {
+    font-family: 'Old London';
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 25px; 
+    opacity: 0.8; /* Adjusted opacity */
+    z-index: 999;
+    text-decoration: none;
+    color: inherit;
+}
+
+.watermark:hover {
+    opacity: 1;
+    cursor: pointer;
+}
