@@ -1,7 +1,5 @@
 # Tunes-of-Randomness
 
-# Music Player Web Application
-
 Welcome to the **Tunes of Randomness!**  
 This project is a simple music player web app  
 that I made using basic coding tools (HTML, CSS, and JS).  
