@@ -7,7 +7,7 @@ that I made using basic coding tools (HTML, CSS, and JS).
 This is a personal project. I spent days—and even weeks—gathering songs  
 from a saved playlist I had on YouTube. I downloaded them,  
 converted them to `.mp3` format, and added them  
-to a Google Drive folder (since it's too big to host here).
+to a folder on a separate hosting service (since it's too big to host here).
 
 
 
@@ -23,7 +23,7 @@ Download the Project Files:
 
 # Download the Music Files:
 
--[Click here to download the music folder.](https://drive.google.com/file/d/1j0FjdQ6xa-ghakqosYo5EXROdfcncrQv/view?usp=sharing)  
+-[Click here to download the music folder.](https://mega.nz/folder/7AAWVCoY#0Mjpse4WyWB4-Ite2o8AjQ/folder/yFhVCQyY)  
 -After downloading, extract the `music.zip` file. This will create a folder called `music`.
 
 # Place the Music Folder in the Project:
