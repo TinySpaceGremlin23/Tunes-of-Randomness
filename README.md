@@ -23,7 +23,7 @@ Download the Project Files:
 
 # Download the Music Files:
 
--[Click here to download the music folder.](https://mega.nz/folder/7AAWVCoY#0Mjpse4WyWB4-Ite2o8AjQ)  
+-[Click here to download the music folder.](https://mega.nz/folder/HAhgwa6S#ucbOtqE40kib1YVhfo1zoA)  
 -After downloading, extract the `music.zip` file. This will create a folder called `music`.
 
 # Place the Music Folder in the Project:
