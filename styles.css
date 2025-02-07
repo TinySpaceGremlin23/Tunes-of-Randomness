@@ -1,0 +1,420 @@
+
+/* Custom Fonts */
+@font-face {
+    font-family: 'Gastroline Signature';
+    src: url(fonts/GastrolineSignature_PERSONAL_USE_ONLY.otf) format('truetype');
+}
+
+:root {
+    --bg-color-start: #F3FEB8;  /* Default background gradient start */
+    --bg-color-end: #FFDE4D;    /* Default background gradient end */
+    --dropdown-bg: #FFB22C;     /* Default dropdown background */
+    --dropdown-border: #5d4037; /* Default dropdown border */
+    --intro-text-color: #FF4C4C; /* Default intro text color */
+    --song-title-color: #FFB22C; /* Default song title color */
+    --progress-bar-bg: #F3FEB8; /* Default progress bar background */
+    --thumb-color: #FFDE4D;      /* Default thumb color */
+    --button-bg: #5d4037;        /* Default button background */
+    --button-text-color: #FFB22C; /* Default button text color */
+    --button-hover-bg: white;   /* Default button hover background */
+    --search-border-color: #5d4037; /* Default search bar border color */
+    --search-button-bg: #FFB22C;   /* Default search button background */
+    --search-button-text-color: white; /* Default search button text color */
+    --navbar-gradient: linear-gradient(to bottom, #F3FEB8, #FFDE4D); /* Default navbar gradient */
+    --navbar-link-hover-color: #FFB22C;  /* Default hover color */
+    --player-container-bg: #FF4C4C; /* Default player container background */
+}
+
+/* Sunset Theme */
+.theme-sunset {
+    --bg-color-start: #ff6f61;   /* Sunset background gradient start */
+    --bg-color-end: #ff9a8b;     /* Sunset background gradient end */
+    --dropdown-bg: #ff9a8b;      /* Sunset dropdown background */
+    --dropdown-border: #5d4037;  /* Sunset dropdown border */
+    --intro-text-color: #5d4037; /* Sunset intro text color */
+    --song-title-color: #5d4037; /* Sunset song title color */
+    --progress-bar-bg: #ff9a8b;  /* Sunset progress bar background */
+    --thumb-color: #ffcc80;      /* Sunset thumb color */
+    --button-bg: #ff6f61;        /* Sunset button background */
+    --button-text-color: #fff;   /* Sunset button text color */
+    --button-hover-bg: #ff6347;  /* Sunset button hover background */
+    --search-button-bg: #ff6f61; /* Sunset search button background */
+    --search-button-text-color: #fff; /* Sunset search button text color */
+    --navbar-gradient: linear-gradient(to bottom, #ff6f61, #ff9a8b); /* Sunset navbar gradient */
+    --navbar-link-hover-color: #ff6347;  /* Sunset theme hover color */
+    --player-container-bg: #ff9a8b; /* Sunset player container background */
+}
+
+/* Midnight Theme */
+.theme-midnight {
+    --bg-color-start: #1c1f26;   /* Midnight background gradient start */
+    --bg-color-end: #3c3f47;     /* Midnight background gradient end */
+    --dropdown-bg: #34495e;      /* Midnight dropdown background */
+    --dropdown-border: #ecf0f1;  /* Midnight dropdown border */
+    --intro-text-color: #ecf0f1; /* Midnight intro text color */
+    --song-title-color: #ecf0f1; /* Midnight song title color */
+    --progress-bar-bg: #34495e;  /* Midnight progress bar background */
+    --thumb-color: #95a5a6;      /* Midnight thumb color */
+    --button-bg: #2c3e50;        /* Midnight button background */
+    --button-text-color: #ecf0f1; /* Midnight button text color */
+    --button-hover-bg: #34495e;  /* Midnight button hover background */
+    --search-button-bg: #2c3e50; /* Midnight search button background */
+    --search-button-text-color: #ecf0f1; /* Midnight search button text color */
+    --navbar-gradient: linear-gradient(to bottom, #1c1f26, #3c3f47); /* Midnight navbar gradient */
+    --navbar-link-hover-color: #ecf0f1;  /* Midnight theme hover color */
+    --player-container-bg: #34495e; /* Midnight player container background */
+}
+
+/* Forest Theme */
+.theme-forest {
+    --bg-color-start: #1b3e20;   /* Forest background gradient start */
+    --bg-color-end: #004d00;     /* Forest background gradient end */
+    --dropdown-bg: #388e3c;      /* Forest dropdown background */
+    --dropdown-border: #e0f2f1;  /* Forest dropdown border */
+    --intro-text-color: #e0f2f1; /* Forest intro text color */
+    --song-title-color: #e0f2f1; /* Forest song title color */
+    --progress-bar-bg: #388e3c;  /* Forest progress bar background */
+    --thumb-color: #4caf50;      /* Forest thumb color */
+    --button-bg: #1b3e20;        /* Forest button background */
+    --button-text-color: #e0f2f1; /* Forest button text color */
+    --button-hover-bg: #388e3c;  /* Forest button hover background */
+    --search-button-bg: #1b3e20; /* Forest search button background */
+    --search-button-text-color: #e0f2f1; /* Forest search button text color */
+    --navbar-gradient: linear-gradient(to bottom, #1b3e20, #004d00); /* Forest navbar gradient */
+    --navbar-link-hover-color: #e0f2f1;  /* Forest theme hover color */
+    --player-container-bg: #388e3c; /* Forest player container background */
+}
+
+/* Summer Pastels Theme */
+.theme-summer-pastels {
+    --bg-color-start: #ffc97f;   /* Summer Pastels background gradient start */
+    --bg-color-end: #f0bbcd;     /* Summer Pastels background gradient end */
+    --dropdown-bg: #eb8291;      /* Summer Pastels dropdown background */
+    --dropdown-border: #f0bbcd;  /* Summer Pastels dropdown border */
+    --intro-text-color: #eb7777; /* Summer Pastels intro text color */
+    --song-title-color: #eb7777; /* Summer Pastels song title color */
+    --progress-bar-bg: #eb8291;  /* Summer Pastels progress bar background */
+    --thumb-color: #ffc97f;      /* Summer Pastels thumb color */
+    --button-bg: #eb7777;        /* Summer Pastels button background */
+    --button-text-color: #f0bbcd; /* Summer Pastels button text color */
+    --button-hover-bg: #f0bbcd;  /* Summer Pastels button hover background */
+    --search-button-bg: #eb7777; /* Summer Pastels search button background */
+    --search-button-text-color: #f0bbcd; /* Summer Pastels search button text color */
+    --navbar-gradient: linear-gradient(to bottom, #ffc97f, #f0bbcd); /* Summer Pastels navbar gradient */
+    --navbar-link-hover-color: #f0bbcd;  /* Summer Pastels hover color */
+    --player-container-bg: #eb8291; /* Summer Pastels player container background */
+}
+
+/* Space Mermaid Theme */
+.theme-space-mermaid {
+    --bg-color-start: #310949;   /* Space Mermaid background gradient start */
+    --bg-color-end: #b82a48;     /* Space Mermaid background gradient end */
+    --dropdown-bg: #f97d4e;      /* Space Mermaid dropdown background */
+    --dropdown-border: #fda750;  /* Space Mermaid dropdown border */
+    --intro-text-color: #fda750; /* Space Mermaid intro text color */
+    --song-title-color: #310949; /* Space Mermaid song title color */
+    --progress-bar-bg: #310949;  /* Space Mermaid progress bar background */
+    --thumb-color: #b82a48;      /* Space Mermaid thumb color */
+    --button-bg: #310949;        /* Space Mermaid button background */
+    --button-text-color: #fda750; /* Space Mermaid button text color */
+    --button-hover-bg: #f97d4e;  /* Space Mermaid button hover background */
+    --search-button-bg: #310949; /* Space Mermaid search button background */
+    --search-button-text-color: #fda750; /* Space Mermaid search button text color */
+    --navbar-gradient: linear-gradient(to bottom, #310949, #b82a48); /* Space Mermaid navbar gradient */
+    --navbar-link-hover-color: #f97d4e;  /* Space Mermaid hover color */
+    --player-container-bg: #f97d4e; /* Space Mermaid player container background */
+}
+
+
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom, var(--bg-color-start), var(--bg-color-end));
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Container for dropdown - positioned in the lower left corner next to the navbar */
+.dropdown-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* Adjust left to push it right of the navbar */
+}
+
+
+/* Style the dropdown */
+select {
+    padding: 5px;
+    font-size: 18px; /* Increased font size for better visibility */
+    border: 2.5px solid var(--dropdown-border);
+    border-radius: 100px;
+    background-color: var(--dropdown-bg);
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+/* Change the background of the dropdown when it's focused */
+select:focus {
+    outline: none;
+    border-color: var(--dropdown-border);
+}
+
+.introText {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0;
+    color: var(--intro-text-color); /* Change text color */
+}
+
+/* Nav Bar Gradient */
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 100%;
+    padding: 22px;
+    box-shadow: 0 5px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: var(--navbar-gradient); /* Use navbar gradient variable */
+    transition: width 0.6s ease;
+}
+
+.topnav.show-nav {
+    width: 180px; /* Adjust to your desired expanded width */
+}
+
+.topnav .toggle-btn {
+    font-size: 25px;
+    border-block-start-color: black;
+    border-block-end-color: black;
+    background: none;
+    cursor: pointer;
+}
+
+.topnav nav {
+    margin-top: 10px;
+}
+
+.topnav ul {
+    list-style-type: none;
+    margin-left: 0; /* Adjust margin-left to remove indentation */
+    padding: 0;
+    display: none; /* Initially hide the navigation links */
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.topnav.show-nav ul {
+    display: block;
+}
+
+.topnav ul li {
+    margin-bottom: 10px;
+}
+
+.topnav ul li a {
+    display: block;
+    text-decoration: none;
+    color: #5d4037; /* Default color for links */
+    transition: color 0.3s; /* Smooth transition for color changes */
+}
+
+.topnav ul li a:hover {
+    color: var(--navbar-link-hover-color);  /* Use the hover color variable */
+}
+
+
+/* Player Container */
+.player-container {
+    margin: 50px auto;
+    padding: 30px;
+    align-items: center;
+    background: var(--player-container-bg); /* Use player container background variable */
+    border-radius: 50px;
+    text-align: center;
+    height: 540px;
+    max-width: 300px;
+    width: 80%;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
+#song-length {
+    font-size: 25px;
+}
+
+/* Scrolling Title */
+.scrolling-title {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px auto;
+    height: 60px; /* Adjust as needed */
+    position: relative;
+}
+
+.scrolling-title p {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-text 10s linear infinite;
+    font-size: 24px;
+    color: var(--song-title-color); /* Use variable for scrolling title color */
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.progress-bar input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background: var(--progress-bar-bg); /* Use variable for progress bar background */
+    outline: none;
+}
+
+.progress-bar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+.progress-bar input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+/* Search Bar */
+.search-bar {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 2px solid var(--search-border-color); /* Use variable for border color */
+}
+
+.search-bar button {
+    padding: 8px 16px;
+    font-size: 18px;
+    background-color: var(--search-button-bg); /* Use variable for button background */
+    color: var(--search-button-text-color); /* Use variable for button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Controls */
+#controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#controls button {
+    background: var(--button-bg); /* Use variable for button background */
+    border: none;
+    font-size: 20px;
+    color: var(--button-text-color); /* Use variable for button text color */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Transition for both bg and scale */
+    margin: 8px;
+}
+
+#controls button:hover {
+    background: var(--button-hover-bg); /* Use separate variable for hover bg */
+    transform: scale(1.1); /* Scale button on hover */
+    transition: background 0.3s, transform 0.3s; /* Transition for both bg and scale */
+}
+
+
+/* Volume Slider */
+.volume-control {
+    margin-top: 20px;
+}
+
+#volume-slider {
+    width: 50%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    margin-top: 10px;
+    background: var(--progress-bar-bg); /* Use variable for volume slider background */
+    border-radius: 5px;
+    outline: none;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--thumb-color); /* Use variable for thumb color */
+    cursor: pointer;
+}
+
+.player-container,
+.progress-bar input[type="range"],
+#controls button,
+#volume-slider::-webkit-slider-thumb,
+.progress-bar input[type="range"]::-webkit-slider-thumb,
+#volume-slider {
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+}
+
+.watermark {
+    font-family: 'Gastroline Signature';
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 25px; 
+    opacity: 0.8; /* Adjusted opacity */
+    z-index: 999;
+    text-decoration: none;
+    color: inherit;
+}
+
+.watermark:hover {
+    opacity: 1;
+    cursor: pointer;
+}
