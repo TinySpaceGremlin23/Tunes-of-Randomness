@@ -85,25 +85,35 @@ function attemptAutoPlay() {
             playPauseBtn.textContent = "⏸"; // Pause icon
         })
         .catch((error) => {
-            console.warn("Autoplay failed:", error.message);
+            console.warn("Autoplay blocked:", error.message);
 
-            // Fallback: mute audio, attempt autoplay again
-            audio.muted = true;
-            audio
-                .play()
-                .then(() => {
-                    console.log("Autoplay successful after muting.");
+            // Add a one-time listener for user interaction to trigger playback
+            document.addEventListener('click', userInitiatedPlay, { once: true });
+            document.addEventListener('scroll', userInitiatedPlay, { once: true });
+
+            const prompt = document.createElement("div");
+            prompt.textContent = "Click anywhere to start the music 🎵";
+            prompt.style.position = "fixed";
+            prompt.style.top = "20px";
+            prompt.style.left = "50%";
+            prompt.style.transform = "translateX(-50%)";
+            prompt.style.background = "#000";
+            prompt.style.color = "#fff";
+            prompt.style.padding = "10px 20px";
+            prompt.style.borderRadius = "5px";
+            prompt.style.zIndex = "9999";
+            document.body.appendChild(prompt);
+
+            function userInitiatedPlay() {
+                audio.play().then(() => {
+                    console.log("Playback started after user interaction.");
                     isPlaying = true;
                     playPauseBtn.textContent = "⏸";
-                    // Unmute after successful play
-                    setTimeout(() => {
-                        audio.muted = false;
-                        console.log("Audio unmuted.");
-                    }, 1000); // Unmute after 1 second
-                })
-                .catch(() => {
-                    console.warn("Autoplay completely blocked. User interaction required.");
+                    prompt.remove(); // Remove the prompt after playback starts
+                }).catch((err) => {
+                    console.error("Playback still blocked:", err.message);
                 });
+            }
         });
 }
 
