@@ -28,46 +28,55 @@ let isPlaying = false;
 let playlist = [];
 let currentSongIndex = 0;
 
-// Load Playlist with CORS Proxy
+// Fetch JSON data
 async function loadPlaylist() {
-    const proxyUrl = "https://corsproxy.io/?";
-    const songsJsonUrl = "https://drive.google.com/uc?export=download&id=1sTEXw3H2j1avAxXuUvPWsJSbfi9IvWhq";
-    
-    fetch(proxyUrl + songsJsonUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            playlist = data;
-            loadSong(currentSongIndex);
-        })
-        .catch(error => console.error("Error loading playlist:", error));
-    
     try {
-        const response = await fetch(corsProxy + jsonUrl);
+        const response = await fetch('songs.json');
         const data = await response.json();
-        playlist = data;
-        loadSong(0);
-        console.log("Playlist loaded successfully!");
+
+        console.log('Fetched Playlist:', data);
+
+        playlist = data.songs || data; // Handle both {songs: [...]} or [...] JSON structures
+
+        if (playlist.length > 0) {
+            loadSong(0);
+        } else {
+            console.warn('Playlist is empty.');
+        }
     } catch (error) {
-        console.error("Error loading playlist:", error);
-        alert("Failed to load the playlist.");
+        console.error('Error loading playlist:', error);
+        alert('Failed to load playlist.');
     }
 }
 
-// Load the current song
+// Load the song details
 function loadSong(index) {
-    if (playlist.length === 0) {
-        console.error("Playlist is empty.");
-        return;
-    }
+    if (index >= 0 && index < playlist.length) {
+        currentSongIndex = index;
+        const song = playlist[currentSongIndex];
 
-    const song = playlist[index];
-    audio.src = song.url;
-    songTitle.textContent = song.name;
+        console.log(`Loading song: ${song.title} from ${song.url}`);
+
+        songTitle.textContent = song.title;
+        songTitle.classList.add("scroll-title");
+
+        try {
+            // Encode the URL to handle spaces and special characters
+            audio.src = encodeURI(song.url);
+            audio.load();
+
+            if (audio.src) {
+                playCurrentSong();
+            } else {
+                throw new Error('Invalid audio source URL');
+            }
+        } catch (err) {
+            console.error(`Error loading audio: ${err.message}`);
+            alert("Unable to load the song.");
+        }
+    } else {
+        console.error('Invalid song index');
+    }
 }
 
 // Play the current song
@@ -81,9 +90,9 @@ function playCurrentSong() {
     audio
         .play()
         .then(() => {
-            console.log(`Playing: ${playlist[currentSongIndex].name}`);
+            console.log(`Playing: ${playlist[currentSongIndex].title}`);
             isPlaying = true;
-            playPauseBtn.textContent = "ll"; // Pause icon
+            playPauseBtn.textContent = "⏸"; // Pause icon
         })
         .catch((error) => {
             console.error("Error playing audio:", error);
@@ -106,14 +115,12 @@ function togglePlayPause() {
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % playlist.length;
     loadSong(currentSongIndex);
-    playCurrentSong();
 }
 
 // Play the previous song
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
     loadSong(currentSongIndex);
-    playCurrentSong();
 }
 
 // Auto-play next song when current song ends
@@ -175,19 +182,16 @@ if (savedTheme) {
 
 // Function to update the theme
 function updateTheme(theme) {
-    // Remove existing theme classes
     body.classList.forEach(className => {
         if (className.startsWith("theme-")) {
             body.classList.remove(className);
         }
     });
 
-    // Apply the new theme
     if (theme !== "default") {
         body.classList.add(`theme-${theme}`);
     }
 
-    // Save the theme to localStorage
     localStorage.setItem("selectedTheme", theme);
 }
 
@@ -196,11 +200,5 @@ themeDropdown.addEventListener("change", function () {
     updateTheme(this.value);
 });
 
-// Load saved theme and playlist on page load
-document.addEventListener("DOMContentLoaded", function () {
-    const savedTheme = localStorage.getItem("selectedTheme") || "default";
-    console.log("Loaded saved theme:", savedTheme);
-    themeDropdown.value = savedTheme;
-    updateTheme(savedTheme);
-    loadPlaylist();
-});
+// Load playlist on page load
+document.addEventListener("DOMContentLoaded", loadPlaylist);
