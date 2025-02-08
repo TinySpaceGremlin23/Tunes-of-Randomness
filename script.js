@@ -61,15 +61,11 @@ function loadSong(index) {
         songTitle.classList.add("scroll-title");
 
         try {
-            // Encode the URL to handle spaces and special characters
             audio.src = encodeURI(song.url);
             audio.load();
 
-            if (audio.src) {
-                playCurrentSong();
-            } else {
-                throw new Error('Invalid audio source URL');
-            }
+            // Try to autoplay the song
+            attemptAutoPlay();
         } catch (err) {
             console.error(`Error loading audio: ${err.message}`);
             alert("Unable to load the song.");
@@ -79,24 +75,35 @@ function loadSong(index) {
     }
 }
 
-// Play the current song
-function playCurrentSong() {
-    if (!audio.src) {
-        console.error("No valid song source found.");
-        alert("No valid song source found.");
-        return;
-    }
-
+// Attempt to autoplay the song
+function attemptAutoPlay() {
     audio
         .play()
         .then(() => {
-            console.log(`Playing: ${playlist[currentSongIndex].title}`);
+            console.log(`Autoplaying: ${playlist[currentSongIndex].title}`);
             isPlaying = true;
             playPauseBtn.textContent = "⏸"; // Pause icon
         })
         .catch((error) => {
-            console.error("Error playing audio:", error);
-            alert("Unable to play the song.");
+            console.warn("Autoplay failed:", error.message);
+
+            // Fallback: mute audio, attempt autoplay again
+            audio.muted = true;
+            audio
+                .play()
+                .then(() => {
+                    console.log("Autoplay successful after muting.");
+                    isPlaying = true;
+                    playPauseBtn.textContent = "⏸";
+                    // Unmute after successful play
+                    setTimeout(() => {
+                        audio.muted = false;
+                        console.log("Audio unmuted.");
+                    }, 1000); // Unmute after 1 second
+                })
+                .catch(() => {
+                    console.warn("Autoplay completely blocked. User interaction required.");
+                });
         });
 }
 
@@ -107,7 +114,7 @@ function togglePlayPause() {
         isPlaying = false;
         playPauseBtn.textContent = "▶"; // Play icon
     } else {
-        playCurrentSong();
+        attemptAutoPlay();
     }
 }
 
