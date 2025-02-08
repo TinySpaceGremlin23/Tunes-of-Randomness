@@ -91,25 +91,14 @@ function attemptAutoPlay() {
             document.addEventListener('click', userInitiatedPlay, { once: true });
             document.addEventListener('scroll', userInitiatedPlay, { once: true });
 
-            const prompt = document.createElement("div");
-            prompt.textContent = "Click anywhere to start the music 🎵";
-            prompt.style.position = "fixed";
-            prompt.style.top = "20px";
-            prompt.style.left = "50%";
-            prompt.style.transform = "translateX(-50%)";
-            prompt.style.background = "#000";
-            prompt.style.color = "#fff";
-            prompt.style.padding = "10px 20px";
-            prompt.style.borderRadius = "5px";
-            prompt.style.zIndex = "9999";
-            document.body.appendChild(prompt);
+            // Display the confirm popup to ask the user to click "OK" to start the music
+            const userConfirmed = window.confirm("Click OK to start the music!");
 
-            function userInitiatedPlay() {
+            if (userConfirmed) {
                 audio.play().then(() => {
-                    console.log("Playback started after user interaction.");
+                    console.log("Playback started after user clicked OK.");
                     isPlaying = true;
                     playPauseBtn.textContent = "⏸";
-                    prompt.remove(); // Remove the prompt after playback starts
                 }).catch((err) => {
                     console.error("Playback still blocked:", err.message);
                 });
