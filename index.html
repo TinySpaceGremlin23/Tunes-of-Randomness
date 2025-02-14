@@ -22,21 +22,20 @@
 
 <!-- Music player container -->
 <div class="player-container">
-    <div id="youtube-player"></div>
-    <div class="song-info">
-        <div class="scrolling-title">
-            <p id="song-title">Song Title will scroll here...</p>
-        </div>
-        <p id="song-length">00:00 / 00:00</p>
+
+    <!-- 🎵 Scrolling Title Added Here -->
+    <div class="scrolling-title" id="scrolling-title">
+        <p id="song-title">Now Playing: Song Title</p>
     </div>
 
+    <!-- 🎯 Progress Bar -->
     <div class="progress-bar">
-        <input type="range" id="progress" value="0" max="100" step="1">
+        <input type="range" id="progress-bar" value="0" max="100" step="1" aria-label="Playback progress">
     </div>
 
     <div class="search-bar">
         <input type="text" id="search-input" placeholder="Search for a song...">
-        <button id="search-btn">Search</button>
+        <button id="search-button">Search</button>
     </div>
 
     <div id="playlist"></div>
