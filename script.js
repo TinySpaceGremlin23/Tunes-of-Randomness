@@ -28,7 +28,7 @@ const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const songTitle = document.getElementById("song-title");
 const songLength = document.getElementById("song-length");
-const progressBar = document.getElementById("progress-bar"); // Updated ID
+const progressBar = document.getElementById("progress-bar");
 const volumeSlider = document.getElementById("volume-slider");
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
@@ -89,33 +89,39 @@ function loadSong(index) {
     }
 }
 
-// Pause or resume playback
+// Pause or resume playback (Manual Control)
 function togglePlayPause() {
     if (isPlaying) {
         audio.pause();
         isPlaying = false;
         if (playPauseBtn) playPauseBtn.textContent = "▶";
     } else {
-        attemptAutoPlay();
+        audio.play().then(() => {
+            isPlaying = true;
+            if (playPauseBtn) playPauseBtn.textContent = "⏸";
+        }).catch(error => {
+            console.error("Playback error:", error);
+            alert("Failed to play. Please check audio settings.");
+        });
     }
 }
 
-// Play the next song
+// Play the next song (Manual Control)
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % playlist.length;
     loadSong(currentSongIndex);
-    attemptAutoPlay();
 }
 
-// Play the previous song
+// Play the previous song (Manual Control)
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
     loadSong(currentSongIndex);
-    attemptAutoPlay();
 }
 
-// Auto-play next song when current song ends
-audio.addEventListener("ended", playNextSong);
+// Auto-play next song when current song ends (Disabled)
+audio.addEventListener("ended", () => {
+    console.log("Song ended. Waiting for user to start next song.");
+});
 
 // Update time and progress bar
 audio.addEventListener("timeupdate", () => {
@@ -129,12 +135,9 @@ function formatTime(seconds) {
     const mins = Math.floor((seconds % 3600) / 60);
     const secs = Math.floor(seconds % 60);
 
-    const formattedTime = 
-        (hrs > 0 ? `${hrs}:` : "") + 
-        `${mins.toString().padStart(2, "0")}:` + 
-        `${secs.toString().padStart(2, "0")}`;
-    
-    return formattedTime;
+    return (hrs > 0 ? `${hrs}:` : "") + 
+           `${mins.toString().padStart(2, "0")}:` + 
+           `${secs.toString().padStart(2, "0")}`;
 }
 
 // Function to update the time display (current time / total duration)
@@ -176,7 +179,7 @@ if (nextBtn) nextBtn.addEventListener("click", playNextSong);
 
 document.addEventListener("DOMContentLoaded", loadPlaylist);
 
-
+// Search functionality
 if (searchButton && searchInput) {
     function searchSong() {
         const query = searchInput.value.toLowerCase().trim();
@@ -185,7 +188,6 @@ if (searchButton && searchInput) {
 
         if (songIndex !== -1) {
             loadSong(songIndex);
-            attemptAutoPlay();
             searchInput.value = "";
             if (notFoundMessage) notFoundMessage.style.display = "none";
         } else {
@@ -194,7 +196,6 @@ if (searchButton && searchInput) {
     }
 
     searchButton.addEventListener("click", searchSong);
-
     searchInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") searchSong();
     });
