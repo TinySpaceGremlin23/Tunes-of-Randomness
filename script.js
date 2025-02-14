@@ -158,6 +158,7 @@ function updateProgressBar() {
     }
 }
 
+
 if (progressBar) {
     progressBar.addEventListener("input", function (event) {
         const newTime = (event.target.value / 100) * audio.duration;
