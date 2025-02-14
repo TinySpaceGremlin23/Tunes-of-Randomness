@@ -75,7 +75,7 @@ function loadSong(index) {
             audio.src = encodeURI(song.url);
             audio.load();
 
-            // Update total duration when metadata is loaded
+            // Ensure duration updates when metadata loads
             audio.addEventListener("loadedmetadata", () => {
                 updateTimeDisplay();
             });
@@ -110,6 +110,7 @@ function togglePlayPause() {
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % playlist.length;
     loadSong(currentSongIndex);
+    audio.play(); // Ensure playback starts automatically
 }
 
 // Play the previous song (Manual Control)
@@ -118,9 +119,10 @@ function playPrevSong() {
     loadSong(currentSongIndex);
 }
 
-// Auto-play next song when current song ends (Disabled)
+// Auto-play next song when current song ends
 audio.addEventListener("ended", () => {
-    console.log("Song ended. Waiting for user to start next song.");
+    console.log("Song ended. Playing next song...");
+    playNextSong();
 });
 
 // Update time and progress bar
