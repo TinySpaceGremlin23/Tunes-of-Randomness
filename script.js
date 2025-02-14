@@ -67,7 +67,6 @@ function loadSong(index) {
 
         console.log(`Loading song: ${song.title} from ${song.url}`);
 
-        const songTitle = document.getElementById("song-title");
         if (songTitle) {
             songTitle.textContent = `Now Playing: ${song.title}`;
         }
@@ -75,6 +74,12 @@ function loadSong(index) {
         try {
             audio.src = encodeURI(song.url);
             audio.load();
+
+            // Update total duration when metadata is loaded
+            audio.addEventListener("loadedmetadata", () => {
+                updateTimeDisplay();
+            });
+
         } catch (err) {
             console.error(`Error loading audio: ${err.message}`);
             alert("Unable to load the song.");
@@ -82,21 +87,6 @@ function loadSong(index) {
     } else {
         console.error('Invalid song index');
     }
-}
-
-// Attempt to autoplay the song
-function attemptAutoPlay() {
-    audio
-        .play()
-        .then(() => {
-            console.log(`Autoplaying: ${playlist[currentSongIndex].title}`);
-            isPlaying = true;
-            if (playPauseBtn) playPauseBtn.textContent = "⏸";
-        })
-        .catch((error) => {
-            console.warn("Autoplay blocked:", error.message);
-            alert("Autoplay failed. Please click the play button manually.");
-        });
 }
 
 // Pause or resume playback
@@ -127,23 +117,36 @@ function playPrevSong() {
 // Auto-play next song when current song ends
 audio.addEventListener("ended", playNextSong);
 
+// Update time and progress bar
 audio.addEventListener("timeupdate", () => {
-    if (!isNaN(audio.duration)) {
-        const currentTime = formatTime(audio.currentTime);
-        const durationTime = formatTime(audio.duration);
-        if (songLength) {
-            songLength.textContent = `${currentTime} / ${durationTime}`;
-        }
-        updateProgressBar();
-    }
+    updateTimeDisplay();
+    updateProgressBar();
 });
 
+// Function to format time properly (hh:mm:ss)
 function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
-    return `${minutes}:${secs}`;
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    const formattedTime = 
+        (hrs > 0 ? `${hrs}:` : "") + 
+        `${mins.toString().padStart(2, "0")}:` + 
+        `${secs.toString().padStart(2, "0")}`;
+    
+    return formattedTime;
 }
 
+// Function to update the time display (current time / total duration)
+function updateTimeDisplay() {
+    if (!isNaN(audio.duration) && songLength) {
+        const currentTime = formatTime(audio.currentTime);
+        const durationTime = formatTime(audio.duration);
+        songLength.textContent = `${currentTime} / ${durationTime}`;
+    }
+}
+
+// Update progress bar
 function updateProgressBar() {
     if (audio.duration && progressBar) {
         progressBar.value = (audio.currentTime / audio.duration) * 100;
@@ -172,6 +175,7 @@ if (prevBtn) prevBtn.addEventListener("click", playPrevSong);
 if (nextBtn) nextBtn.addEventListener("click", playNextSong);
 
 document.addEventListener("DOMContentLoaded", loadPlaylist);
+
 
 if (searchButton && searchInput) {
     function searchSong() {
