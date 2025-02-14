@@ -1,4 +1,3 @@
-
 /* Custom Fonts */
 @font-face {
     font-family: 'Gastroline Signature';
@@ -6,125 +5,124 @@
 }
 
 :root {
-    --bg-color-start: #F3FEB8;  /* Default background gradient start */
-    --bg-color-end: #FFDE4D;    /* Default background gradient end */
-    --dropdown-bg: #FFB22C;     /* Default dropdown background */
-    --dropdown-border: #5d4037; /* Default dropdown border */
-    --intro-text-color: #FF4C4C; /* Default intro text color */
-    --song-title-color: #FFB22C; /* Default song title color */
-    --progress-bar-bg: #F3FEB8; /* Default progress bar background */
-    --thumb-color: #FFDE4D;      /* Default thumb color */
-    --button-bg: #5d4037;        /* Default button background */
-    --button-text-color: #FFB22C; /* Default button text color */
-    --button-hover-bg: white;   /* Default button hover background */
-    --search-border-color: #5d4037; /* Default search bar border color */
-    --search-button-bg: #FFB22C;   /* Default search button background */
-    --search-button-text-color: white; /* Default search button text color */
-    --navbar-gradient: linear-gradient(to bottom, #F3FEB8, #FFDE4D); /* Default navbar gradient */
-    --navbar-link-hover-color: #FFB22C;  /* Default hover color */
-    --player-container-bg: #FF4C4C; /* Default player container background */
+    --bg-color-start: #F3FEB8;
+    --bg-color-end: #FFDE4D;
+    --dropdown-bg: #FFB22C;
+    --dropdown-border: #5d4037;
+    --intro-text-color: #FF4C4C;
+    --song-title-color: #FFB22C;
+    --progress-bar-bg: #F3FEB8;
+    --thumb-color: #FFDE4D;
+    --button-bg: #5d4037;
+    --button-text-color: #FFB22C;
+    --button-hover-bg: white;
+    --search-border-color: #5d4037;
+    --search-button-bg: #FFB22C;
+    --search-button-text-color: white;
+    --navbar-gradient: linear-gradient(to bottom, #F3FEB8, #FFDE4D);
+    --navbar-link-hover-color: #FFB22C;
+    --player-container-bg: #FF4C4C;
 }
 
 /* Sunset Theme */
 .theme-sunset {
-    --bg-color-start: #ff6f61;   /* Sunset background gradient start */
-    --bg-color-end: #ff9a8b;     /* Sunset background gradient end */
-    --dropdown-bg: #ff9a8b;      /* Sunset dropdown background */
-    --dropdown-border: #5d4037;  /* Sunset dropdown border */
-    --intro-text-color: #5d4037; /* Sunset intro text color */
-    --song-title-color: #5d4037; /* Sunset song title color */
-    --progress-bar-bg: #ff9a8b;  /* Sunset progress bar background */
-    --thumb-color: #ffcc80;      /* Sunset thumb color */
-    --button-bg: #ff6f61;        /* Sunset button background */
-    --button-text-color: #fff;   /* Sunset button text color */
-    --button-hover-bg: #ff6347;  /* Sunset button hover background */
-    --search-button-bg: #ff6f61; /* Sunset search button background */
-    --search-button-text-color: #fff; /* Sunset search button text color */
-    --navbar-gradient: linear-gradient(to bottom, #ff6f61, #ff9a8b); /* Sunset navbar gradient */
-    --navbar-link-hover-color: #ff6347;  /* Sunset theme hover color */
-    --player-container-bg: #ff9a8b; /* Sunset player container background */
+    --bg-color-start: #ff6f61;
+    --bg-color-end: #ff9a8b;
+    --dropdown-bg: #ff9a8b;
+    --dropdown-border: #5d4037;
+    --intro-text-color: #5d4037;
+    --song-title-color: #5d4037;
+    --progress-bar-bg: #ffcc80;
+    --thumb-color: #ff6f61;
+    --button-bg: #ff6f61;
+    --button-text-color: #fff;
+    --button-hover-bg: #ff6347;
+    --search-button-bg: #ff6f61;
+    --search-button-text-color: #fff;
+    --navbar-gradient: linear-gradient(to bottom, #ff6f61, #ff9a8b);
+    --navbar-link-hover-color: #ff6347;
+    --player-container-bg: #ff9a8b;
 }
 
 /* Midnight Theme */
 .theme-midnight {
-    --bg-color-start: #1c1f26;   /* Midnight background gradient start */
-    --bg-color-end: #3c3f47;     /* Midnight background gradient end */
-    --dropdown-bg: #34495e;      /* Midnight dropdown background */
-    --dropdown-border: #ecf0f1;  /* Midnight dropdown border */
-    --intro-text-color: #ecf0f1; /* Midnight intro text color */
-    --song-title-color: #ecf0f1; /* Midnight song title color */
-    --progress-bar-bg: #34495e;  /* Midnight progress bar background */
-    --thumb-color: #95a5a6;      /* Midnight thumb color */
-    --button-bg: #2c3e50;        /* Midnight button background */
-    --button-text-color: #ecf0f1; /* Midnight button text color */
-    --button-hover-bg: #34495e;  /* Midnight button hover background */
-    --search-button-bg: #2c3e50; /* Midnight search button background */
-    --search-button-text-color: #ecf0f1; /* Midnight search button text color */
-    --navbar-gradient: linear-gradient(to bottom, #1c1f26, #3c3f47); /* Midnight navbar gradient */
-    --navbar-link-hover-color: #ecf0f1;  /* Midnight theme hover color */
-    --player-container-bg: #34495e; /* Midnight player container background */
+    --bg-color-start: #1c1f26;
+    --bg-color-end: #3c3f47;
+    --dropdown-bg: #34495e;
+    --dropdown-border: #ecf0f1;
+    --intro-text-color: #ecf0f1;
+    --song-title-color: #ecf0f1;
+    --progress-bar-bg:#95a5a6;
+    --thumb-color:#1c1f26;
+    --button-bg: #2c3e50;
+    --button-text-color: #ecf0f1;
+    --button-hover-bg: #34495e;
+    --search-button-bg: #2c3e50;
+    --search-button-text-color: #ecf0f1;
+    --navbar-gradient: linear-gradient(to bottom, #1c1f26, #3c3f47);
+    --navbar-link-hover-color: #ecf0f1;
+    --player-container-bg: #34495e;
 }
 
 /* Forest Theme */
 .theme-forest {
-    --bg-color-start: #1b3e20;   /* Forest background gradient start */
-    --bg-color-end: #004d00;     /* Forest background gradient end */
-    --dropdown-bg: #388e3c;      /* Forest dropdown background */
-    --dropdown-border: #e0f2f1;  /* Forest dropdown border */
-    --intro-text-color: #e0f2f1; /* Forest intro text color */
-    --song-title-color: #e0f2f1; /* Forest song title color */
-    --progress-bar-bg: #388e3c;  /* Forest progress bar background */
-    --thumb-color: #4caf50;      /* Forest thumb color */
-    --button-bg: #1b3e20;        /* Forest button background */
-    --button-text-color: #e0f2f1; /* Forest button text color */
-    --button-hover-bg: #388e3c;  /* Forest button hover background */
-    --search-button-bg: #1b3e20; /* Forest search button background */
-    --search-button-text-color: #e0f2f1; /* Forest search button text color */
-    --navbar-gradient: linear-gradient(to bottom, #1b3e20, #004d00); /* Forest navbar gradient */
-    --navbar-link-hover-color: #e0f2f1;  /* Forest theme hover color */
-    --player-container-bg: #388e3c; /* Forest player container background */
+    --bg-color-start: #1b3e20;
+    --bg-color-end: #004d00;
+    --dropdown-bg: #388e3c;
+    --dropdown-border: #e0f2f1;
+    --intro-text-color: #e0f2f1;
+    --song-title-color: #e0f2f1;
+    --progress-bar-bg: #388e3c;
+    --thumb-color: #4caf50;
+    --button-bg: #1b3e20;
+    --button-text-color: #e0f2f1;
+    --button-hover-bg: #388e3c;
+    --search-button-bg: #1b3e20;
+    --search-button-text-color: #e0f2f1;
+    --navbar-gradient: linear-gradient(to bottom, #1b3e20, #004d00);
+    --navbar-link-hover-color: #e0f2f1;
+    --player-container-bg: #388e3c;
 }
 
 /* Summer Pastels Theme */
 .theme-summer-pastels {
-    --bg-color-start: #ffc97f;   /* Summer Pastels background gradient start */
-    --bg-color-end: #f0bbcd;     /* Summer Pastels background gradient end */
-    --dropdown-bg: #eb8291;      /* Summer Pastels dropdown background */
-    --dropdown-border: #f0bbcd;  /* Summer Pastels dropdown border */
-    --intro-text-color: #eb7777; /* Summer Pastels intro text color */
-    --song-title-color: #eb7777; /* Summer Pastels song title color */
-    --progress-bar-bg: #eb8291;  /* Summer Pastels progress bar background */
-    --thumb-color: #ffc97f;      /* Summer Pastels thumb color */
-    --button-bg: #eb7777;        /* Summer Pastels button background */
-    --button-text-color: #f0bbcd; /* Summer Pastels button text color */
-    --button-hover-bg: #f0bbcd;  /* Summer Pastels button hover background */
-    --search-button-bg: #eb7777; /* Summer Pastels search button background */
-    --search-button-text-color: #f0bbcd; /* Summer Pastels search button text color */
-    --navbar-gradient: linear-gradient(to bottom, #ffc97f, #f0bbcd); /* Summer Pastels navbar gradient */
-    --navbar-link-hover-color: #f0bbcd;  /* Summer Pastels hover color */
-    --player-container-bg: #eb8291; /* Summer Pastels player container background */
+    --bg-color-start: #ffc97f;
+    --bg-color-end: #f0bbcd;
+    --dropdown-bg: #eb8291;
+    --dropdown-border: #f0bbcd;
+    --intro-text-color: #eb7777;
+    --song-title-color: #eb7777;
+    --progress-bar-bg: #eb8291;
+    --thumb-color: #ffc97f;
+    --button-bg: #eb7777;
+    --button-text-color: #f0bbcd;
+    --button-hover-bg: #f0bbcd;
+    --search-button-bg: #eb7777;
+    --search-button-text-color: #f0bbcd;
+    --navbar-gradient: linear-gradient(to bottom, #ffc97f, #f0bbcd);
+    --navbar-link-hover-color: #f0bbcd;
+    --player-container-bg: #eb8291;
 }
 
 /* Space Mermaid Theme */
 .theme-space-mermaid {
-    --bg-color-start: #310949;   /* Space Mermaid background gradient start */
-    --bg-color-end: #b82a48;     /* Space Mermaid background gradient end */
-    --dropdown-bg: #f97d4e;      /* Space Mermaid dropdown background */
-    --dropdown-border: #fda750;  /* Space Mermaid dropdown border */
-    --intro-text-color: #fda750; /* Space Mermaid intro text color */
-    --song-title-color: #310949; /* Space Mermaid song title color */
-    --progress-bar-bg: #310949;  /* Space Mermaid progress bar background */
-    --thumb-color: #b82a48;      /* Space Mermaid thumb color */
-    --button-bg: #310949;        /* Space Mermaid button background */
-    --button-text-color: #fda750; /* Space Mermaid button text color */
-    --button-hover-bg: #f97d4e;  /* Space Mermaid button hover background */
-    --search-button-bg: #310949; /* Space Mermaid search button background */
-    --search-button-text-color: #fda750; /* Space Mermaid search button text color */
-    --navbar-gradient: linear-gradient(to bottom, #310949, #b82a48); /* Space Mermaid navbar gradient */
-    --navbar-link-hover-color: #f97d4e;  /* Space Mermaid hover color */
-    --player-container-bg: #f97d4e; /* Space Mermaid player container background */
+    --bg-color-start: #310949;
+    --bg-color-end: #b82a48;
+    --dropdown-bg: #f97d4e;
+    --dropdown-border: #fda750;
+    --intro-text-color: #fda750;
+    --song-title-color: #310949;
+    --progress-bar-bg: #310949;
+    --thumb-color: #b82a48;
+    --button-bg: #310949;
+    --button-text-color: #fda750;
+    --button-hover-bg: #f97d4e;
+    --search-button-bg: #310949;
+    --search-button-text-color: #fda750;
+    --navbar-gradient: linear-gradient(to bottom, #310949, #b82a48);
+    --navbar-link-hover-color: #f97d4e;
+    --player-container-bg: #f97d4e;
 }
-
 
 body {
     height: 100vh;
@@ -134,14 +132,12 @@ body {
     padding: 0;
 }
 
-
 /* Container for dropdown - positioned in the lower left corner next to the navbar */
 .dropdown-container {
     position: fixed;
     bottom: 20px;
     left: 20px; /* Adjust left to push it right of the navbar */
 }
-
 
 /* Style the dropdown */
 select {
@@ -163,7 +159,7 @@ select:focus {
 .introText {
     font-size: 20px;
     text-align: center;
-    margin: 10px 0;
+    margin: 50px 0;
     color: var(--intro-text-color); /* Change text color */
 }
 
@@ -217,14 +213,13 @@ select:focus {
 .topnav ul li a {
     display: block;
     text-decoration: none;
-    color: #5d4037; /* Default color for links */
+    color: #948f8f; /* Default color for links */
     transition: color 0.3s; /* Smooth transition for color changes */
 }
 
 .topnav ul li a:hover {
     color: var(--navbar-link-hover-color);  /* Use the hover color variable */
 }
-
 
 /* Player Container */
 .player-container {
@@ -234,12 +229,11 @@ select:focus {
     background: var(--player-container-bg); /* Use player container background variable */
     border-radius: 50px;
     text-align: center;
-    height: 540px;
+    height: 400px;
     max-width: 300px;
     width: 80%;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
-
 
 #song-length {
     font-size: 25px;
@@ -330,7 +324,6 @@ select:focus {
     cursor: pointer;
 }
 
-
 /* Controls */
 #controls {
     display: flex;
@@ -340,24 +333,19 @@ select:focus {
 }
 
 #controls button {
-    background: var(--button-bg); /* Use variable for button background */
-    border: none;
     font-size: 20px;
+    background-color: var(--button-bg); /* Use variable for button background */
     color: var(--button-text-color); /* Use variable for button text color */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 100px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s; /* Transition for both bg and scale */
-    margin: 8px;
+    transition: background-color 0.3s ease;
 }
 
 #controls button:hover {
-    background: var(--button-hover-bg); /* Use separate variable for hover bg */
-    transform: scale(1.1); /* Scale button on hover */
-    transition: background 0.3s, transform 0.3s; /* Transition for both bg and scale */
+    background-color: var(--button-hover-bg); /* Hover effect */
 }
-
 
 /* Volume Slider */
 .volume-control {
