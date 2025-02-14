@@ -9,10 +9,18 @@ document.addEventListener("click", function (event) {
     const topnav = document.getElementById("topnav");
     const toggleBtn = document.getElementById("toggleBtn");
 
-    if (!topnav.contains(event.target) && event.target !== toggleBtn) {
+    if (!topnav.contains(event.target) && event.target !== toggleBtn && topnav.classList.contains('show-nav')) {
         topnav.classList.remove("show-nav");
     }
 });
+
+// Attach the toggle event listener to the toggle button
+const toggleBtn = document.getElementById("toggleBtn");
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", toggleNav);
+} else {
+    console.warn("Toggle button not found.");
+}
 
 // Get music player elements
 const playPauseBtn = document.getElementById("play-pause");
@@ -20,8 +28,10 @@ const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const songTitle = document.getElementById("song-title");
 const songLength = document.getElementById("song-length");
-const progressBar = document.getElementById("progress");
+const progressBar = document.getElementById("progress-bar"); // Updated ID
 const volumeSlider = document.getElementById("volume-slider");
+const searchInput = document.getElementById("search-input");
+const searchButton = document.getElementById("search-button");
 
 const audio = new Audio();
 let isPlaying = false;
@@ -36,13 +46,10 @@ async function loadPlaylist() {
 
         console.log('Fetched Playlist:', data);
 
-        playlist = data.songs || data; // Handle both {songs: [...]} or [...] JSON structures
+        playlist = data.songs || data;
 
         if (playlist.length > 0) {
             loadSong(0);
-
-            // Show popup after playlist loads
-            promptUserToPlay();
         } else {
             console.warn('Playlist is empty.');
         }
@@ -60,8 +67,10 @@ function loadSong(index) {
 
         console.log(`Loading song: ${song.title} from ${song.url}`);
 
-        songTitle.textContent = song.title;
-        songTitle.classList.add("scroll-title");
+        const songTitle = document.getElementById("song-title");
+        if (songTitle) {
+            songTitle.textContent = `Now Playing: ${song.title}`;
+        }
 
         try {
             audio.src = encodeURI(song.url);
@@ -75,17 +84,6 @@ function loadSong(index) {
     }
 }
 
-// Prompt user to start the music
-function promptUserToPlay() {
-    const userConfirmed = window.confirm("Click OK to start the music!");
-
-    if (userConfirmed) {
-        attemptAutoPlay();
-    } else {
-        console.log("User declined to start the music.");
-    }
-}
-
 // Attempt to autoplay the song
 function attemptAutoPlay() {
     audio
@@ -93,7 +91,7 @@ function attemptAutoPlay() {
         .then(() => {
             console.log(`Autoplaying: ${playlist[currentSongIndex].title}`);
             isPlaying = true;
-            playPauseBtn.textContent = "⏸"; // Pause icon
+            if (playPauseBtn) playPauseBtn.textContent = "⏸";
         })
         .catch((error) => {
             console.warn("Autoplay blocked:", error.message);
@@ -106,7 +104,7 @@ function togglePlayPause() {
     if (isPlaying) {
         audio.pause();
         isPlaying = false;
-        playPauseBtn.textContent = "▶"; // Play icon
+        if (playPauseBtn) playPauseBtn.textContent = "▶";
     } else {
         attemptAutoPlay();
     }
@@ -116,92 +114,119 @@ function togglePlayPause() {
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % playlist.length;
     loadSong(currentSongIndex);
-    attemptAutoPlay(); // Automatically play the next song
+    attemptAutoPlay();
 }
 
 // Play the previous song
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
     loadSong(currentSongIndex);
-    attemptAutoPlay(); // Automatically play the previous song
+    attemptAutoPlay();
 }
 
 // Auto-play next song when current song ends
 audio.addEventListener("ended", playNextSong);
 
-// Update time and progress bar
 audio.addEventListener("timeupdate", () => {
     if (!isNaN(audio.duration)) {
         const currentTime = formatTime(audio.currentTime);
         const durationTime = formatTime(audio.duration);
-        songLength.textContent = `${currentTime} / ${durationTime}`;
+        if (songLength) {
+            songLength.textContent = `${currentTime} / ${durationTime}`;
+        }
         updateProgressBar();
     }
 });
 
-// Format time (mm:ss)
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
     return `${minutes}:${secs}`;
 }
 
-// Update progress bar
 function updateProgressBar() {
-    if (audio.duration) {
+    if (audio.duration && progressBar) {
         progressBar.value = (audio.currentTime / audio.duration) * 100;
     }
 }
 
-// Seek through song
-progressBar.addEventListener("input", function (event) {
-    const newTime = (event.target.value / 100) * audio.duration;
-    audio.currentTime = newTime;
-});
-
-// Adjust volume
-volumeSlider.addEventListener("input", function (event) {
-    audio.volume = event.target.value / 100;
-});
-
-// Event Listeners for player buttons
-playPauseBtn.addEventListener("click", togglePlayPause);
-prevBtn.addEventListener("click", playPrevSong);
-nextBtn.addEventListener("click", playNextSong);
-
-// Event Listener for Navbar Toggle
-document.getElementById("toggleBtn").addEventListener("click", toggleNav);
-
-// Get theme dropdown element
-const themeDropdown = document.getElementById("theme-dropdown");
-const body = document.body;
-
-// Load the saved theme from localStorage (if available)
-const savedTheme = localStorage.getItem("selectedTheme");
-if (savedTheme) {
-    body.classList.add(`theme-${savedTheme}`);
-    themeDropdown.value = savedTheme;
+if (progressBar) {
+    progressBar.addEventListener("input", function (event) {
+        const newTime = (event.target.value / 100) * audio.duration;
+        audio.currentTime = newTime;
+    });
+} else {
+    console.warn("Progress bar not found.");
 }
 
-// Function to update the theme
-function updateTheme(theme) {
-    body.classList.forEach(className => {
-        if (className.startsWith("theme-")) {
-            body.classList.remove(className);
-        }
+if (volumeSlider) {
+    volumeSlider.addEventListener("input", function (event) {
+        audio.volume = event.target.value / 100;
     });
+} else {
+    console.warn("Volume slider not found.");
+}
 
-    if (theme !== "default") {
-        body.classList.add(`theme-${theme}`);
+if (playPauseBtn) playPauseBtn.addEventListener("click", togglePlayPause);
+if (prevBtn) prevBtn.addEventListener("click", playPrevSong);
+if (nextBtn) nextBtn.addEventListener("click", playNextSong);
+
+document.addEventListener("DOMContentLoaded", loadPlaylist);
+
+if (searchButton && searchInput) {
+    function searchSong() {
+        const query = searchInput.value.toLowerCase().trim();
+        const songIndex = playlist.findIndex(song => song.title.toLowerCase().includes(query));
+        const notFoundMessage = document.getElementById("not-found-message");
+
+        if (songIndex !== -1) {
+            loadSong(songIndex);
+            attemptAutoPlay();
+            searchInput.value = "";
+            if (notFoundMessage) notFoundMessage.style.display = "none";
+        } else {
+            if (notFoundMessage) notFoundMessage.style.display = "block";
+        }
     }
 
-    localStorage.setItem("selectedTheme", theme);
+    searchButton.addEventListener("click", searchSong);
+
+    searchInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") searchSong();
+    });
+
+    searchInput.addEventListener("input", function () {
+        const notFoundMessage = document.getElementById("not-found-message");
+        if (notFoundMessage) notFoundMessage.style.display = "none";
+    });
+} else {
+    console.warn("Search button or input not found.");
 }
 
-// Event listener for theme selection
-themeDropdown.addEventListener("change", function () {
-    updateTheme(this.value);
+const themes = ["default", "sunset", "midnight", "forest", "summer-pastels", "space-mermaid"];
+
+function switchTheme(theme) {
+    document.body.classList.remove(...themes.map(t => `theme-${t}`));
+    document.body.classList.add(`theme-${theme}`);
+    if (themeDropdown) themeDropdown.value = theme; // Sync dropdown with current theme
+}
+
+function randomizeTheme() {
+    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+    switchTheme(randomTheme);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    randomizeTheme(); // Apply a random theme on page load
 });
 
-// Load playlist on page load
-document.addEventListener("DOMContentLoaded", loadPlaylist);
+const themeDropdown = document.getElementById("theme-dropdown");
+
+if (themeDropdown) {
+    themeDropdown.addEventListener("change", function () {
+        const selectedTheme = themeDropdown.value;
+        switchTheme(selectedTheme);
+    });
+} else {
+    console.warn("Theme dropdown not found.");
+}
