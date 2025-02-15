@@ -74,6 +74,12 @@ function loadSong(index) {
         try {
             audio.src = encodeURI(song.url);
             audio.load();
+
+            // ✅ Reset the time display immediately
+            if (songLength) {
+                songLength.textContent = "00:00 / 00:00"; 
+            }
+
         } catch (err) {
             console.error(`Error loading audio: ${err.message}`);
             alert("Unable to load the song.");
@@ -83,11 +89,12 @@ function loadSong(index) {
     }
 }
 
+
+audio.addEventListener("loadedmetadata", updateTimeDisplay);
+
 // Event listener to update the time display when the audio time updates
 audio.addEventListener("timeupdate", updateTimeDisplay);
 
-// Event listener to update the time display when the audio metadata is loaded
-audio.addEventListener("loadedmetadata", updateTimeDisplay);
 
 // Pause or resume playback
 function togglePlayPause() {
@@ -132,12 +139,13 @@ function formatTime(seconds) {
 }
 
 function updateTimeDisplay() {
-    if (!isNaN(audio.duration) && songLength) {
+    if (!isNaN(audio.duration) && audio.duration > 0 && songLength) {
         const currentTime = formatTime(audio.currentTime);
-        const durationTime = formatTime(audio.duration) || "00:00";
+        const durationTime = formatTime(audio.duration);
         songLength.textContent = `${currentTime} / ${durationTime}`;
     }
 }
+
 
 function updateProgressBar() {
     if (audio.duration && progressBar) {
