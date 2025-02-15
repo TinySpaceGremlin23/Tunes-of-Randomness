@@ -235,29 +235,41 @@ select:focus {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-#song-length {
-    text-align: center;
-    font-size: 14px;
-    color: white;
-    margin-top: 5px;
-}
-
-
-/* Scrolling Title */
+/* 🎵 Scrolling Title Container */
 .scrolling-title {
     width: 100%;
     overflow: hidden;
     margin: 10px auto;
-    height: 60px; /* Adjust as needed */
+    height: 60px; /* Keep as needed */
     position: relative;
+    display: flex; /* ✅ Aligns title and length in a row */
+    align-items: center;
+    justify-content: space-between; /* ✅ Spaces out the title and song length */
+    padding: 0 10px;
 }
 
+/* 🎶 Scrolling Text Effect */
 .scrolling-title p {
     display: inline-block;
     white-space: nowrap;
     animation: scroll-text 10s linear infinite;
     font-size: 24px;
-    color: var(--song-title-color); /* Use variable for scrolling title color */
+    color: var(--song-title-color);
+    margin: 0; /* ✅ Removes unwanted spacing */
+}
+
+/* ⏳ Song Length Display */
+#song-length {
+    font-size: 14px;
+    color: white;
+    margin: 0;
+    padding-left: 10px; /* ✅ Adds spacing from the title */
+    flex-shrink: 0; /* ✅ Prevents it from shrinking with the scrolling title */
+}
+
+.song-time {
+    font-size: 0.9em;
+    color: #ccc; /* ✅ Light gray for readability */
 }
 
 @keyframes scroll-text {
