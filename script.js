@@ -75,10 +75,11 @@ function loadSong(index) {
             audio.src = encodeURI(song.url);
             audio.load();
 
-            // Ensure duration updates when metadata loads
-            audio.addEventListener("loadedmetadata", () => {
-                updateTimeDisplay();
-            });
+            // Ensure metadata loads before updating time
+    audio.addEventListener("loadedmetadata", () => {
+    updateTimeDisplay(); // Call update function once metadata is available
+});
+
 
         } catch (err) {
             console.error(`Error loading audio: ${err.message}`);
@@ -146,7 +147,7 @@ function formatTime(seconds) {
 function updateTimeDisplay() {
     if (!isNaN(audio.duration) && songLength) {
         const currentTime = formatTime(audio.currentTime);
-        const durationTime = formatTime(audio.duration);
+        const durationTime = isNaN(audio.duration) ? "00:00" : formatTime(audio.duration);
         songLength.textContent = `${currentTime} / ${durationTime}`;
     }
 }
