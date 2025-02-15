@@ -236,8 +236,12 @@ select:focus {
 }
 
 #song-length {
-    font-size: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    margin-top: 5px;
 }
+
 
 /* Scrolling Title */
 .scrolling-title {
