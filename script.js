@@ -74,13 +74,6 @@ function loadSong(index) {
         try {
             audio.src = encodeURI(song.url);
             audio.load();
-
-            // Ensure metadata loads before updating time
-    audio.addEventListener("loadedmetadata", () => {
-    updateTimeDisplay(); // Call update function once metadata is available
-});
-
-
         } catch (err) {
             console.error(`Error loading audio: ${err.message}`);
             alert("Unable to load the song.");
@@ -90,7 +83,9 @@ function loadSong(index) {
     }
 }
 
-// Pause or resume playback (Manual Control)
+audio.addEventListener("loadedmetadata", updateTimeDisplay);
+
+// Pause or resume playback
 function togglePlayPause() {
     if (isPlaying) {
         audio.pause();
@@ -107,74 +102,55 @@ function togglePlayPause() {
     }
 }
 
-// Play the next song (Manual Control)
+// Play the next song
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % playlist.length;
     loadSong(currentSongIndex);
-    audio.play(); // Ensure playback starts automatically
+    audio.play();
 }
 
-// Play the previous song (Manual Control)
+// Play the previous song
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
     loadSong(currentSongIndex);
 }
 
-// Auto-play next song when current song ends
-audio.addEventListener("ended", () => {
-    console.log("Song ended. Playing next song...");
-    playNextSong();
-});
-
-// Update time and progress bar
+audio.addEventListener("ended", playNextSong);
 audio.addEventListener("timeupdate", () => {
     updateTimeDisplay();
     updateProgressBar();
 });
 
-// Function to format time properly (hh:mm:ss)
 function formatTime(seconds) {
-    const hrs = Math.floor(seconds / 3600);
     const mins = Math.floor((seconds % 3600) / 60);
     const secs = Math.floor(seconds % 60);
-
-    return (hrs > 0 ? `${hrs}:` : "") + 
-           `${mins.toString().padStart(2, "0")}:` + 
-           `${secs.toString().padStart(2, "0")}`;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 }
 
-// Function to update the time display (current time / total duration)
 function updateTimeDisplay() {
     if (!isNaN(audio.duration) && songLength) {
         const currentTime = formatTime(audio.currentTime);
-        const durationTime = isNaN(audio.duration) ? "00:00" : formatTime(audio.duration);
+        const durationTime = formatTime(audio.duration) || "00:00";
         songLength.textContent = `${currentTime} / ${durationTime}`;
     }
 }
 
-// Update progress bar
 function updateProgressBar() {
     if (audio.duration && progressBar) {
         progressBar.value = (audio.currentTime / audio.duration) * 100;
     }
 }
 
-
 if (progressBar) {
     progressBar.addEventListener("input", function (event) {
-        const newTime = (event.target.value / 100) * audio.duration;
-        audio.currentTime = newTime;
+        audio.currentTime = (event.target.value / 100) * audio.duration;
     });
-} else {
-    console.warn("Progress bar not found.");
 }
 
 if (volumeSlider) {
     volumeSlider.addEventListener("input", function (event) {
         audio.volume = event.target.value / 100;
     });
-} else {
-    console.warn("Volume slider not found.");
 }
 
 if (playPauseBtn) playPauseBtn.addEventListener("click", togglePlayPause);
@@ -182,6 +158,7 @@ if (prevBtn) prevBtn.addEventListener("click", playPrevSong);
 if (nextBtn) nextBtn.addEventListener("click", playNextSong);
 
 document.addEventListener("DOMContentLoaded", loadPlaylist);
+
 
 // Search functionality
 if (searchButton && searchInput) {
