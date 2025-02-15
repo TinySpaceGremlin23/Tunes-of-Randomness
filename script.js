@@ -83,6 +83,10 @@ function loadSong(index) {
     }
 }
 
+// Event listener to update the time display when the audio time updates
+audio.addEventListener("timeupdate", updateTimeDisplay);
+
+// Event listener to update the time display when the audio metadata is loaded
 audio.addEventListener("loadedmetadata", updateTimeDisplay);
 
 // Pause or resume playback
