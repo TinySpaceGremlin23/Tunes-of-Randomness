@@ -31,7 +31,7 @@ const songLength = document.getElementById("song-length");
 const progressBar = document.getElementById("progress-bar");
 const volumeSlider = document.getElementById("volume-slider");
 const searchInput = document.getElementById("search-input");
-const searchButton = document.getElementById("search-button");
+const searchButton = document.getElementById("search-btn"); // Fix: changed ID to match HTML
 
 const audio = new Audio();
 let isPlaying = false;
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
     randomizeTheme(); // Apply a random theme on page load
 });
 
-const themeDropdown = document.getElementById("theme-dropdown");
+const themeDropdown = document.getElementById("color-scheme"); // Fix: changed ID to match HTML
 
 if (themeDropdown) {
     themeDropdown.addEventListener("change", function () {
