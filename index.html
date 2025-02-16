@@ -22,62 +22,68 @@
 
 <!-- Music player container -->
 <div class="player-container">
-
-<!-- 🎵 Scrolling Title Updated -->
-<div class="scrolling-title" id="scrolling-title">
-    <p id="song-title">Now Playing: Song Title</p>
-    <p id="song-length" class="song-time">00:00 / 00:00</p> <!-- ✅ Add class for styling -->
-</div>
-
-
-    <!-- 🎯 Progress Bar -->
-    <div class="progress-bar">
-        <input type="range" id="progress-bar" value="0" max="100" step="1" aria-label="Playback progress">
+    <div class="song-info">
+        <!-- Scrolling song title and album cover -->
+        <div class="scrolling-title">
+            <p id="song-title">Song Title will scroll here...</p>
+        </div>
+        <!-- Song length -->
+        <p id="song-length">00:00 / 00:00</p>
     </div>
 
+    <!-- Progress bar for song -->
+    <div class="progress-bar">
+        <input type="range" id="progress" value="0" max="100" step="1">
+    </div>
+
+    <!-- Search bar for searching songs -->
     <div class="search-bar">
         <input type="text" id="search-input" placeholder="Search for a song...">
-        <button id="search-button">Search</button>
+        <button id="search-btn">Search</button>
     </div>
 
-    <div id="playlist"></div>
+   <div id="playlist"></div>
 
-    <div id="not-found-message" style="display: none; color: red; text-align: center; margin-top: 10px;">
-        Song not available. Please try another search.
-    </div>
+    <!-- Message container for song not available -->
+<div id="not-found-message" style="display: none; color: red; text-align: center; margin-top: 10px;">
+    Song not available. Please try another search.
+</div>
 
+    <!-- Music controls -->
     <div id="controls">
-        <button id="prev" aria-label="Previous song">⏮</button>
-        <button id="play-pause" aria-label="Play/Pause">⏯</button>
-        <button id="next" aria-label="Next song">⏭</button>
+        <button id="prev" aria-label="Previous song">◀</button>
+        <button id="play-pause" aria-label="Play/Pause">▶ll</button>
+        <button id="next" aria-label="Next song">▶</button>
     </div>
 
+    <!-- Volume control slider -->
     <div class="volume-control">
         <input type="range" id="volume-slider" value="50" max="100" step="1" aria-label="Volume control">
     </div>
 
+    <!-- Top navigation bar -->
     <div class="topnav" id="topnav">
-        <button class="toggle-btn" id="toggleBtn">≡</button>
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleNav()">≡</button>
         <ul>
             <li><a href="index.html">Home</a></li>
         </ul>
     </div>
 </div>
 
+<!-- Dropdown container for theme selection -->
 <div class="dropdown-container">
-    <select id="theme-dropdown">
+    <select id="color-scheme">
         <option value="default">Default</option>
-        <option value="sunset">Sunset</option>
-        <option value="midnight">Midnight</option>
-        <option value="forest">Forest</option>
-        <option value="summer-pastels">Summer Pastels</option>
-        <option value="space-mermaid">Space Mermaid</option>
+        <option value="sunset">Sunset Bliss</option>
+        <option value="midnight">Midnight Blue</option>
+        <option value="nature">Forest Green</option>
     </select>
 </div>
 
-<audio id="audio" controls style="display: none;"></audio>
+<!-- Hidden audio element -->
+<audio id="audio" controls style="display: none;"></audio> <!-- Required for audio playback -->
 
-<!-- Script imports -->
+<!-- Include JS script at the end of the body for better load performance -->
 <script src="script.js"></script>
 
 </body>
